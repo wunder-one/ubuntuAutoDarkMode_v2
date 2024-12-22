@@ -62,15 +62,11 @@ The configuration file is stored at `~/.config/theme-switcher/config.json` and c
 - Your latitude and longitude
 - Night light preference
 
-To reconfigure:
-1. Delete the configuration file:
-```bash
-rm ~/.config/theme-switcher/config.json
-```
-2. Run the configuration script again:
+To reconfigure run the configuration script again:
 ```bash
 ~/.local/share/autodarkmode/config.sh
 ```
+Or you can edit the config file directly.
 
 ## Dependencies
 
@@ -105,7 +101,8 @@ rm ~/.config/theme-switcher/config.json
 To remove Auto Dark Mode v2:
 
 ```bash
-systemctl --user stop autodarkmode.timer
+systemctl --user stop auto-darkmode.timer
+systemctl --user disable auto-darkmode.timer
 rm -rf ~/.local/share/autodarkmode
 rm -rf ~/.config/theme-switcher
 ```
@@ -120,7 +117,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## Acknowledgments
 
-- Original Auto Dark Mode script
+- Based on [auto-darkmode-switcher](https://github.com/littleant/auto-darkmode-switcher) by littleant and on [ubuntuAutoDarkMode](https://github.com/tintinando/ubuntuAutoDarkMode) by tintinando
 - Hebrew Calendar tools (`hdate`)
 - Ubuntu GNOME team for gsettings framework
 
