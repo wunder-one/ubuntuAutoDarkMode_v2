@@ -31,6 +31,7 @@ fi
 
 # Create installation directory
 INSTALL_DIR="$HOME/.local/share/autodarkmode"
+rm -rf "$INSTALL_DIR/source"
 mkdir -p "$INSTALL_DIR"
 
 # Clone the repository
