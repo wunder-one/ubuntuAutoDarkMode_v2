@@ -5,7 +5,7 @@ echo "=============================="
 
 # Check if running on Ubuntu
 if ! grep -q "Ubuntu" /etc/os-release; then
-    echo "This script is designed for Ubuntu. Other systems may not work correctly."
+    echo "This script is designed for Ubuntu 24. Other systems may not work correctly."
     read -p "Continue anyway? (y/N) " -n 1 -r
     echo
     if [[ ! $REPLY =~ ^[Yy]$ ]]; then
@@ -29,14 +29,8 @@ if [ ! -z "$MISSING_COMMANDS" ]; then
     sudo apt-get install -y $MISSING_COMMANDS
 fi
 
-# Install hdate if not present
-if ! command -v hdate >/dev/null 2>&1; then
-    echo "Installing hdate..."
-    sudo apt-get update && sudo apt-get install -y hdate
-fi
-
 # Create installation directory
-INSTALL_DIR="$HOME/.local/share/auto-darkmode"
+INSTALL_DIR="$HOME/.local/share/autodarkmode"
 mkdir -p "$INSTALL_DIR"
 
 # Clone the repository
@@ -53,7 +47,7 @@ chmod +x "$INSTALL_DIR/"*.sh
 # Set up initial timer
 "$INSTALL_DIR/auto-dark-mode.sh"
 
-echo
+
 echo "Installation complete! Auto Dark Mode has been installed and configured."
 echo "The theme will automatically switch at the next sunrise/sunset."
 echo "Configuration file is located at: $HOME/.config/theme-switcher/config.json"

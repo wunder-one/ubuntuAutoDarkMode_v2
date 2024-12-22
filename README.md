@@ -36,24 +36,24 @@ sudo apt-get install git curl jq hdate
 
 2. Clone the repository:
 ```bash
-mkdir -p ~/.local/share/auto-darkmode
-git clone https://github.com/wunder-one/ubuntuAutoDarkMode_v2.git ~/.local/share/auto-darkmode/source
+mkdir -p ~/.local/share/autodarkmode
+git clone https://github.com/wunder-one/ubuntuAutoDarkMode_v2.git ~/.local/share/autodarkmode/source
 ```
 
 3. Copy and make scripts executable:
 ```bash
-cp ~/.local/share/auto-darkmode/source/*.sh ~/.local/share/auto-darkmode/
-chmod +x ~/.local/share/auto-darkmode/*.sh
+cp ~/.local/share/autodarkmode/source/*.sh ~/.local/share/autodarkmode/
+chmod +x ~/.local/share/autodarkmode/*.sh
 ```
 
 4. Run the configuration:
 ```bash
-~/.local/share/auto-darkmode/config.sh
+~/.local/share/autodarkmode/config.sh
 ```
 
 5. Start the service:
 ```bash
-~/.local/share/auto-darkmode/auto-dark-mode.sh
+~/.local/share/autodarkmode/auto-dark-mode.sh
 ```
 
 ## Configuration
@@ -69,7 +69,7 @@ rm ~/.config/theme-switcher/config.json
 ```
 2. Run the configuration script again:
 ```bash
-~/.local/share/auto-darkmode/config.sh
+~/.local/share/autodarkmode/config.sh
 ```
 
 ## Dependencies
@@ -81,15 +81,15 @@ rm ~/.config/theme-switcher/config.json
 
 ## Ubuntu Version Support
 
-- Primarily tested on Ubuntu 24.04
+- Primarily tested on Ubuntu 24.10
 - May work on other Ubuntu versions and derivatives
 - Focuses on color-scheme switching (GTK theme switching removed as it's deprecated in Ubuntu 24.04)
 
 ## Troubleshooting
 
 1. **Theme not switching:**
-   - Check if the service is running: `systemctl --user status auto-darkmode.timer`
-   - Check the logs: `journalctl --user -u auto-darkmode`
+   - Check if the service is running: `systemctl --user status autodarkmode.timer`
+   - Check the logs: `journalctl --user -u autodarkmode`
 
 2. **Wrong times:**
    - Verify your coordinates in the config file
@@ -105,8 +105,8 @@ rm ~/.config/theme-switcher/config.json
 To remove Auto Dark Mode v2:
 
 ```bash
-systemctl --user stop auto-darkmode.timer
-rm -rf ~/.local/share/auto-darkmode
+systemctl --user stop autodarkmode.timer
+rm -rf ~/.local/share/autodarkmode
 rm -rf ~/.config/theme-switcher
 ```
 

@@ -13,12 +13,13 @@ setup_config() {
     
     # Get location coordinates
     echo "Please enter your coordinates"
-    echo "You can find them at https://www.geolocation.com/"
+    echo "You can find them in the url of google maps" 
+    echo "or you can use https://www.geolocation.com/"
     read -p "Enter latitude (e.g., 51.5074): " lat
     read -p "Enter longitude (e.g., -0.1278): " lng
     
     # Night light preference
-    read -p "Would you like to enable night light feature? (y/N): " night_light
+    read -p "Would you like to automatically enable night light feature? (y/N): " night_light
     case $night_light in
         [Yy]* ) night_light="true" ;;
         * ) night_light="false" ;;
