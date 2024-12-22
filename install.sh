@@ -34,9 +34,12 @@ fi
 INSTALL_DIR="$HOME/.local/share/autodarkmode"
 mkdir -p "$INSTALL_DIR"
 
+# Get the directory where the script is located
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
 # Copy files to installation directory and clean up
 echo "Installing Auto Dark Mode..."
-cp ./*.sh "$INSTALL_DIR/"
+cp -f "$SCRIPT_DIR"/*.sh "$INSTALL_DIR/"
 chmod +x "$INSTALL_DIR/"*.sh
 
 # If we're in a git clone or zip download directory, clean it up
