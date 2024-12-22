@@ -36,7 +36,13 @@ setup_config() {
     echo "Configuration saved to $CONFIG_FILE"
 }
 
-# Run setup if config doesn't exist
+# Run setup if config doesn't exist or user wants to reconfigure
 if [ ! -f "$CONFIG_FILE" ]; then
     setup_config
+else
+    read -p "Configuration file already exists. Would you like to reconfigure? (y/N): " reconfigure
+    case $reconfigure in
+        [Yy]* ) setup_config ;;
+        * ) echo "Keeping existing configuration." ;;
+    esac
 fi
