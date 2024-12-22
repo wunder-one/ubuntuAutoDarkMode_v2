@@ -76,6 +76,39 @@ fi
 
 echo "Next execution scheduled for: $NEXT_EXECUTION_AT"
 
-# Schedule next run using systemd
-systemctl --user stop auto-darkmode.timer 2> /dev/null
-systemd-run --user --no-ask-password --on-calendar "$NEXT_EXECUTION_AT" --unit="auto-darkmode" --collect
+# Create systemd user service and timer files
+mkdir -p ~/.config/systemd/user/
+
+cat > ~/.config/systemd/user/auto-darkmode.service << EOF
+[Unit]
+Description=Auto Dark Mode Service
+
+[Service]
+Type=oneshot
+ExecStart=$HOME/.local/share/autodarkmode/auto-dark-mode.sh
+
+[Install]
+WantedBy=default.target
+EOF
+
+cat > ~/.config/systemd/user/auto-darkmode.timer << EOF
+[Unit]
+Description=Auto Dark Mode Timer
+
+[Timer]
+OnCalendar=$NEXT_EXECUTION_AT
+Unit=auto-darkmode.service
+
+[Install]
+WantedBy=timers.target
+EOF
+
+# Reload systemd user daemon
+systemctl --user daemon-reload
+
+# Stop existing timer if running
+systemctl --user stop auto-darkmode.timer 2>/dev/null || true
+
+# Start and enable the timer
+systemctl --user start auto-darkmode.timer
+systemctl --user enable auto-darkmode.timer
