@@ -7,8 +7,6 @@ CONFIG_FILE="$CONFIG_DIR/config.json"
 # Ensure config directory exists
 mkdir -p "$CONFIG_DIR"
 
-echo "hello"
-
 setup_config() {
     echo "Auto Dark Mode Configuration Setup"
     echo "================================="
