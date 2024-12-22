@@ -8,19 +8,49 @@ Automatically switch between light and dark modes in Ubuntu based on sunrise and
 - Optional night light feature (blue light filter)
 - Calculates sunrise and sunset times offline using `hdate`
 - Uses systemd timers for precise theme switching
-- Simple one-command installation
+- Simple installation process
 - Configuration stored separately from script
 
-## Quick Install
+## Installation
 
-Install Auto Dark Mode v2 with a single command:
+### 1. Install Required Dependencies
+
+First, install the required system packages:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/wunder-one/ubuntuAutoDarkMode_v2/main/install.sh | bash
+sudo apt-get update
+sudo apt-get install git curl jq hdate
+```
+
+### 2. Download the Source Code
+
+Choose one of these methods:
+
+#### Option A: Clone with Git (Recommended)
+```bash
+git clone https://github.com/wunder-one/ubuntuAutoDarkMode_v2.git
+cd ubuntuAutoDarkMode_v2
+```
+
+#### Option B: Download ZIP
+1. Visit https://github.com/wunder-one/ubuntuAutoDarkMode_v2
+2. Click the green "Code" button
+3. Select "Download ZIP"
+4. Extract the downloaded file:
+```bash
+unzip ubuntuAutoDarkMode_v2-main.zip
+cd ubuntuAutoDarkMode_v2-main
+```
+
+### 3. Run the Installation Script
+
+```bash
+chmod +x install.sh
+./install.sh
 ```
 
 The installer will:
-- Install required dependencies
+- Create necessary directories
 - Set up the configuration
 - Start the auto-switching service
 

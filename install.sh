@@ -24,30 +24,33 @@ for cmd in $REQUIRED_COMMANDS; do
 done
 
 if [ ! -z "$MISSING_COMMANDS" ]; then
-    echo "Installing required packages:$MISSING_COMMANDS"
-    sudo apt-get update
-    sudo apt-get install -y $MISSING_COMMANDS
+    echo "Missing required packages:$MISSING_COMMANDS"
+    echo "Please install them first using:"
+    echo "sudo apt-get update && sudo apt-get install -y$MISSING_COMMANDS"
+    exit 1
 fi
 
 # Create installation directory
 INSTALL_DIR="$HOME/.local/share/autodarkmode"
-rm -rf "$INSTALL_DIR/source"
 mkdir -p "$INSTALL_DIR"
 
-# Clone the repository
-echo "Downloading Auto Dark Mode..."
-git clone https://github.com/wunder-one/ubuntuAutoDarkMode_v2.git "$INSTALL_DIR/source"
-
-# Copy scripts to installation directory
-cp "$INSTALL_DIR/source/"*.sh "$INSTALL_DIR/"
+# Copy files to installation directory and clean up
+echo "Installing Auto Dark Mode..."
+cp ./*.sh "$INSTALL_DIR/"
 chmod +x "$INSTALL_DIR/"*.sh
+
+# If we're in a git clone or zip download directory, clean it up
+CURRENT_DIR=$(pwd)
+if [[ "$CURRENT_DIR" == *"ubuntuAutoDarkMode_v2"* ]]; then
+    cd ..
+    rm -rf "$CURRENT_DIR"
+fi
 
 # Run configuration
 "$INSTALL_DIR/config.sh"
 
 # Set up initial timer
 "$INSTALL_DIR/auto-dark-mode.sh"
-
 
 echo "Installation complete! Auto Dark Mode has been installed and configured."
 echo "The theme will automatically switch at the next sunrise/sunset."
